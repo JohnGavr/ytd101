@@ -1,1 +1,1 @@
-# youtubedl
+Πρόγραμμα μετατροπής youtube URL σε mp3 και αποθήκευση στο σημείο που είναι το bash script.
