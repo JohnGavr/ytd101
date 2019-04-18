@@ -9,7 +9,7 @@ if [[ -z $video ]]
    echo "Σφάλμα URL"
    exit 0
 else 
-  youtube-dl --extract-audio --audio-format mp3 --output "%(uploader)s%(title)s.%(ext)s" $video 
+  youtube-dl --extract-audio --audio-format mp3 --output "%(title)s.%(ext)s" $video 
 fi
 
 
