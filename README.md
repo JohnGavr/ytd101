@@ -6,6 +6,6 @@ Debian/Ubuntu : sudo apt-get youtube-dl
 
 Arch : sudo pacman -S youtube-dl
 
-Το αρχείο αποθηκεύεται στην τοποθεσία που βρίσκεται το bash script.
+Το αρχείο αποθηκεύεται στην τοποθεσία /home/"yourname"/Music .
 
-Μπορούμε να τρέξουμε το script με την εντολή ./youtubeb.sh στο τερματικό αφού πρώτα έχουμε μεταφερθεί στο φάκελο που βρίσκεται.
+Μπορούμε να τρέξουμε το script με την εντολή ./youtubeb.sh στο τερματικό.
