@@ -4,12 +4,12 @@
 
 read -rp "Youtube URL:" video
 
-if [[ -z $video ]] 
+if [[ $video = 'https://www.youtube.com/watch?'*v=* ]] 
    then
-   echo "Σφάλμα URL"
+   youtube-dl --extract-audio --audio-format mp3 --embed-thumbnail --output "%(title)s.%(ext)s" $video 
    exit 0
 else 
-  youtube-dl --extract-audio --audio-format mp3 --embed-thumbnail --output "%(title)s.%(ext)s" $video 
+  echo "This is not a youtube link"
 fi
 
 
