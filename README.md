@@ -1,17 +1,32 @@
-Ένα απλό bash script που μετατρέπει το youtube URL σε mp3 αρχείο.
+## YTD101 - YoutubeDownloadBashScript
 
-Η μετατροπή γίνεται μέσω της εντολής youtube-dl η οποία πρέπει να υπάρχει στον υπολογιστή σας.
+### Λόγοι δημιουργίας
 
-Debian/Ubuntu : sudo apt-get install youtube-dl
+Έχετε βαρεθεί να ψάχνετε για online μετατροπές youtube URL σε mp3 αρχεία; 
 
-Arch : sudo pacman -S youtube-dl
+Χρησιμοποιείται Linux; 
 
-Το αρχείο αποθηκεύεται στην τοποθεσία /home/"yourname"/Music .
+Τότε αυτό θα σας λύσει τα χέρια από περιττές αναζητήσεις. 
 
-Μπορούμε να τρέξουμε το script με την εντολή ./youtubeb.sh στο τερματικό.
+### Προαπαιτούμενα
 
-Σχόλια: 
+1. Linux σύστημα
+2. youtube-dl command
 
-1. Το όνομα του αρχείου παίρνει το όνομα του youtube video. 
-2. Μέσα στο .mp3 αποθηκεύεται και το thumbnail του video.
+Σε Debian/Ubuntu : sudo apt-get install youtube-dl
+
+Σε Arch : sudo pacman -S youtube-dl
+
+### Εκτέλεση
+
+Μόλις κατεβάσετε το repo, ανοίξτε το τερματικό σας και κατευθείντε το στο μέρος που το έχετε αποθηκεύσει. 
+
+Σε περίπτωση που δεν είναι εκτελέσιμο πληκτρολογήστε στο τερματικό : chmod +x ytd.sh
+
+Για την εκτέλεση του script : ./ytd.sh
+
+### Πρόσθετες Πληροφορίες
+
+1. Όλα τα mp3 αρχεία αποθηκεύονται στο PATH= /home/"your_name"/Music
+2. Μαζί με το mp3 αποθηκεύεται και το thumbnail του video. 
 
