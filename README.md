@@ -15,6 +15,11 @@
 
 Σε Debian/Ubuntu : ```sudo apt-get install youtube-dl```
 
+Σε περίπτωση που υπάρχει ασυμβατότητα του youtube-dl στο σύστημα σας μπορείτε να εγκαταστήσετε το πακέτο μέσω του python-pip
+
+``` sudo apt-get install python-pio```
+``` sudo pip install youtube-dl```
+
 Σε Arch : ```sudo pacman -S youtube-dl```
 
 ### Εκτέλεση
