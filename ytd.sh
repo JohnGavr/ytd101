@@ -4,7 +4,7 @@
 function url_check {
     if [[ $url = 'https://www.youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtu.be'*/* ]] || [[ $url == 'm.youtube.com'** ]]
         then
-            folder=$(head -n 1 destination)
+            folder=$(head -n 1 destination.txt)
             home=""/home/""$USER""/""$folder""
             cd "$home"
             echo "########    Ytd101    ########"
