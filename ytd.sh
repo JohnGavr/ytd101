@@ -6,7 +6,12 @@ function url_check {
         then
             folder=$(head -n 1 destination.txt)
             home=""/home/""$USER""/""$folder""
-            cd "$home"
+            if [[ -d "$home" ]]; then
+                cd "$home"
+            else
+                mkdir "$home"
+                cd "$home"
+            fi
             echo "########    Ytd101    ########"
             echo "## Η λήψη πραγματοποιείται. ##"
             echo "########   Υπομονή!   ########"
