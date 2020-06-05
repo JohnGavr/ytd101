@@ -4,9 +4,14 @@
 function url_check {
     if [[ $url = 'https://www.youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtu.be'*/* ]] || [[ $url == 'm.youtube.com'** ]]
         then
-            folder=$(head -n 1 destination)
+            folder=$(head -n 1 destination.txt)
             home=""/home/""$USER""/""$folder""
-            cd "$home"
+            if [[ -d "$home" ]]; then
+                cd "$home"
+            else
+                mkdir -p "$home"
+                cd "$home"
+            fi
             echo "########    Ytd101    ########"
             echo "## Η λήψη πραγματοποιείται. ##"
             echo "########   Υπομονή!   ########"
@@ -54,14 +59,28 @@ else
             echo "  mp4: Μετατρέπει το url σε mp4 format  "
             echo "------------------------------------------"
     elif [[ $1 == "--mp3" ]]; then
-            url="$2"
-            check_flag url
-            mp3 url
+            if [[ "$2" == "" ]]; then
+                echo "-----------------------"
+                echo "   Δεν πρόσθεσες url   "
+                echo "    ./ytd --mp3 url    "
+            else    
+                url="$2"
+                check_flag url
+                mp3 url
+            fi
     elif [[ $1 == "--mp4" ]]; then
-            url="$2"
-            check_flag url
-            mp4 url 
+            if [[ "$2" == "" ]]; then
+                echo "-----------------------"
+                echo "   Δεν πρόσθεσες url   "
+                echo "    ./ytd --mp4 url    "
+            else    
+                url="$2"
+                check_flag url
+                mp4 url
+            fi 
     fi
+    
+    
     
 fi    
 
