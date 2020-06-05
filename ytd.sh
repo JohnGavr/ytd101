@@ -9,7 +9,7 @@ function url_check {
             if [[ -d "$home" ]]; then
                 cd "$home"
             else
-                mkdir "$home"
+                mkdir -p "$home"
                 cd "$home"
             fi
             echo "########    Ytd101    ########"
