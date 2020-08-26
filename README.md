@@ -1,41 +1,22 @@
-## YTD101 - YoutubeDownloadBashScript
+## YTD - YoutubeDownloadBashScript
 
-### Λόγοι δημιουργίας
+### Depedencies
 
-Έχετε βαρεθεί να ψάχνετε για online μετατροπές youtube URL σε mp3 αρχεία; 
+2. youtube-dl 
 
-Χρησιμοποιείτε Linux; 
+Debian/Ubuntu: ```sudo apt install youtube-dl ffmpeg```
 
-Αν και οι δύο απαντήσεις σας είναι ναι τότε αυτό το script θα σας λύσει τα χέρια από περιττές αναζητήσεις. 
+Arch based : ```sudo pacman -S youtube-dl```
 
-### Προαπαιτούμενα
+### Usage Information
 
-1. Linux σύστημα
-2. youtube-dl command
+Basic usage: 
 
-Σε Debian/Ubuntu : ```sudo apt-get install youtube-dl```
+```./ytd --[option] [url]```
 
-Σε περίπτωση που υπάρχει ασυμβατότητα του youtube-dl στο σύστημα σας μπορείτε να εγκαταστήσετε το πακέτο μέσω του python-pip
+Available Options
 
-``` sudo apt-get install python-pip```
-``` sudo pip install youtube-dl```
-
-Σε Arch : ```sudo pacman -S youtube-dl```
-
-### Πρόσθετες Πληροφορίες
-
-1. Το script δουλεύει με την παρακάτω μορφή.
-
-```./ytd.sh format url```
-
-2. Προσθήκη αρχείου destination. Στο συγκεκριμένο αρχείο προσθέτουμε την διαδρομή του καταλόγου που θέλουμε να αποθηκεύονται τα αρχεία(Μην το διαγράψετε πρέπει να βρίσκεται στον ίδιο φάκελο με το script).
-
-3. Format επιλογές:
-
-   --mp3: Μετατρέπει τα youtube url σε mp3 μορφή. Αποθηκεύεται το thumbnail στο αρχείο του τραγουδιού
-
-   --mp4: Μετατρέπει τα youtube url σε mp4 μορφή. Αποθηκεύεται το thumbnail στο αρχείο του τραγουδιού
-
-   
-
+1. mp3 : for mp3 convert
+2. mp4 : for mp4 conver
+3. help : for help options
 
