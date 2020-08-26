@@ -4,31 +4,29 @@
 function url_check {
     if [[ $url = 'https://www.youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtu.be'*/* ]] || [[ $url == 'm.youtube.com'** ]]
         then
-            folder=$(head -n 1 destination.txt)
-            home=""/home/""$USER""/""$folder""
+            home="/home/""$USER""/Music"
             if [[ -d "$home" ]]; then
-                cd "$home"
+                cd "$home" || return
             else
                 mkdir -p "$home"
-                cd "$home"
+                cd "$home" || return
             fi
             echo "########    Ytd101    ########"
-            echo "## Η λήψη πραγματοποιείται. ##"
-            echo "########   Υπομονή!   ########"
+            echo "# The download just started! #"
             
     else
-            echo "Αυτό δεν είναι Youtube Url." 
+            echo "This is not a Youtube Url." 
             exit
     fi
 }
 # Συνάρτηση μετατροπής σε mp3
 function mp3 {
-	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --output "%(title)s.%(ext)s" $url
+	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --output "%(title)s.%(ext)s" "$url"
 }
 
 # Συνάρτηση μετατροπής σε mp4
 function mp4 {
-    youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $url
+    youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
 }
 
 # Έλεγχος αν ο χρήστης πρόσθεσε δεύτερο όρισμα
@@ -36,7 +34,7 @@ function check_flag {
     if [[ "$url" != "" ]]; then
         url_check
     else
-        echo "Δεν πρόσθεσες url."
+        echo "Add Url."
         exit 0
     fi
 }
@@ -45,23 +43,23 @@ function check_flag {
 
 if [[ "$#" == "0" ]];
 then
-    echo "Δε δόθηκε παράμετρος"
-    echo "Τρέξτε το script με την παράμετρο --help"
+    echo "No parameter given."
+    echo "Run ytd --help to see the available options."
     exit 0
 else
     if [[ $1 == "--help" ]];
         then 
-            echo "--------------    Ytd101    --------------"
-            echo "   Το script δουλεύει με την εξής μορφή   "
-            echo "           ./ytd --format url           "
-            echo "              Διαθέσιμα format            "
-            echo "  mp3: Μετατρέπει το url σε mp3 format  "
-            echo "  mp4: Μετατρέπει το url σε mp4 format  "
-            echo "------------------------------------------"
+            echo "--------------    Ytd101    ---------------"
+            echo "               Script Format               "
+            echo "             ytd --options url             "
+            echo "             Available Options             "
+            echo "        mp3: Convert the url to mp3        "
+            echo "        mp4: Convert the url to mp4        "
+            echo "-------------------------------------------"
     elif [[ $1 == "--mp3" ]]; then
             if [[ "$2" == "" ]]; then
                 echo "-----------------------"
-                echo "   Δεν πρόσθεσες url   "
+                echo "   Add url!   "
                 echo "    ./ytd --mp3 url    "
             else    
                 url="$2"
@@ -71,13 +69,17 @@ else
     elif [[ $1 == "--mp4" ]]; then
             if [[ "$2" == "" ]]; then
                 echo "-----------------------"
-                echo "   Δεν πρόσθεσες url   "
+                echo "   Add url!   "
                 echo "    ./ytd --mp4 url    "
             else    
                 url="$2"
                 check_flag url
                 mp4 url
             fi 
+    else
+        echo "--------------- Ytd ----------------"
+        echo " Give one of the available options! "
+        echo "             ytd --help             "
     fi
     
     
