@@ -2,9 +2,9 @@
 
 ### Depedencies
 
-2. youtube-dl 
+1. youtube-dl 
 
-Debian/Ubuntu: ```sudo apt install youtube-dl ffmpeg```
+Debian/Ubuntu: ```sudo apt install youtube-dl```
 
 Arch based : ```sudo pacman -S youtube-dl```
 
