@@ -21,12 +21,12 @@ function url_check {
 }
 # Συνάρτηση μετατροπής σε mp3
 function mp3 {
-	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --output "%(title)s.%(ext)s" "$url"
+	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --output "%(title)s.%(ext)s" "$url"
 }
 
 # Συνάρτηση μετατροπής σε mp4
 function mp4 {
-    youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
+    youtube-dl --embed-thumbnail -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
 }
 
 # Έλεγχος αν ο χρήστης πρόσθεσε δεύτερο όρισμα
