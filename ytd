@@ -19,14 +19,25 @@ function url_check {
             exit
     fi
 }
+
 # Συνάρτηση μετατροπής σε mp3
 function mp3 {
 	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --output "%(title)s.%(ext)s" "$url"
 }
 
+# Συνάρτηση μετρατοπής μεμονομένου αρχείου λίστας σε mp3
+function mp3_solo_list {
+    youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail -no-playlist- --output "%(title)s.%(ext)s" "$url"
+}
+
 # Συνάρτηση μετατροπής σε mp4
 function mp4 {
     youtube-dl --embed-thumbnail -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
+}
+
+# Συνάρτηση μετατροπής μεμονομένου αρχείου λίστας σε mp4
+function mp4_solo_list {
+    youtube-dl --embed-thumbnail --no-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
 }
 
 # Έλεγχος αν ο χρήστης πρόσθεσε δεύτερο όρισμα
@@ -40,7 +51,6 @@ function check_flag {
 }
 
 # Βασικό scipt με flags
-
 if [[ "$#" == "0" ]];
 then
     echo "No parameter given."
