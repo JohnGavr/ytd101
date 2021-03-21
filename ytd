@@ -30,6 +30,11 @@ function mp3_solo_list {
     youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --no-playlist --output "%(title)s.%(ext)s" "$1"
 }
 
+#Συνάρτηση μετρατοπής ολόκληρης λίστας σε mp3 (for music.youtube)
+function mp3_whole_list {
+    youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist --output "%(title)s.%(ext)s" "$1"
+}
+
 # Συνάρτηση μετατροπής σε mp4
 function mp4 {
     youtube-dl --embed-thumbnail -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
@@ -38,6 +43,11 @@ function mp4 {
 # Συνάρτηση μετατροπής μεμονομένου αρχείου λίστας σε mp4
 function mp4_solo_list {
     youtube-dl --embed-thumbnail --no-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
+}
+
+# Συνάρτηση μετρατοπής ολόκληρης λίστας σε mp4 (for music.youtube)
+function mp4_whole_list {
+    youtube-dl --embed-thumbnail --yes-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
 }
 
 #Συνάρτηση ερώτησης Y/N
@@ -66,7 +76,7 @@ function check_list {
             then
                 "$2" "$1" 
             else
-                ""$2"_solo_list" "$1"
+                "${2}_solo_list" "$1"
         fi
     else
         "$2" "$1"
