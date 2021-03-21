@@ -40,16 +40,6 @@ function mp4_solo_list {
     youtube-dl --embed-thumbnail --no-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
 }
 
-# Έλεγχος αν ο χρήστης πρόσθεσε δεύτερο όρισμα
-function check_flag {
-    if [[ "$url" != "" ]]; then
-        url_check
-    else
-        echo "Add Url."
-        exit 0
-    fi
-}
-
 #Συνάρτηση ερώτησης Y/N
 function YN_Q {
 	while true; do
@@ -105,7 +95,7 @@ else
                 echo "    ./ytd --mp3 url    "
             else    
                 url="$2"
-                check_flag "$url"
+                url_check "$url"
                 check_list "$url" "mp3"
             fi
     elif [[ $1 == "--mp4" ]]; then
@@ -115,7 +105,7 @@ else
                 echo "    ./ytd --mp4 url    "
             else    
                 url="$2"
-                check_flag "$url"
+                url_check"$url"
                 check_list "$url" "mp4"
             fi 
     else
