@@ -8,8 +8,6 @@ For that script you will need
 2. ffmpeg
 3. atomicparsley
 
-
-
 ### Usage Information
 
 Basic usage: 
