@@ -72,9 +72,14 @@ function check_list {
     if [[ "$url" == *"watch?v="* ]] && [[ "$url" == *"list="* ]]
         then
         echo "That url contains a list"
-        if YN_Q "Do you want to download the whole list? (y/n)" "Please insert y or n" 
+        if YN_Q "Do you want to download the whole list? (y/n) " "Please insert y or n: " 
             then
-                "$2" "$1" 
+                if [[ "$url" == *"music.youtube"* ]]
+                    then
+                        "${2}_whole_list" "$1"
+                else
+                    "${2}_solo_list" "$1"
+                fi 
             else
                 "${2}_solo_list" "$1"
         fi
@@ -115,7 +120,7 @@ else
                 echo "    ./ytd --mp4 url    "
             else    
                 url="$2"
-                url_check"$url"
+                url_check "$url"
                 check_list "$url" "mp4"
             fi 
     else
