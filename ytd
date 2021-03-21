@@ -50,6 +50,23 @@ function check_flag {
     fi
 }
 
+#Συνάρτηση ερώτησης Y/N
+function YN_Q {
+	while true; do
+		read -rp "$1" yes_no
+		case "$yes_no" in
+			y|yes|Y|Yes|YES )
+				return 0;
+				break;;
+			n|no|N|No|NO )
+				return 1;
+				break;;
+			* )
+				echo -e "${2:-"${IYellow}μη έγκυρη απάντηση${NC}"}";;
+		esac
+	done
+}
+
 # Βασικό scipt με flags
 if [[ "$#" == "0" ]];
 then
