@@ -2,17 +2,19 @@
 
 ### Depedencies
 
-2. youtube-dl 
+For that script you will need 
 
-Debian/Ubuntu: ```sudo apt install youtube-dl ffmpeg```
+1. youtube-dl
+2. ffmpeg
+3. atomicparsley
 
-Arch based : ```sudo pacman -S youtube-dl```
+
 
 ### Usage Information
 
 Basic usage: 
 
-```./ytd --[option] [url]```
+```./ytd --[option] ["url"]```
 
 Available Options
 
