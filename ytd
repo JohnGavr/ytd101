@@ -2,7 +2,7 @@
 
 # Συνάρτηση ελέγχου Youtube Url
 function url_check {
-    if [[ $url = 'https://www.youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtube.com/watch?'*v=* ]] || [[ $url == 'https://youtu.be'*/* ]] || [[ $url == 'm.youtube.com'** ]] || [[ $url == 'https://music.youtube.com/watch?'*v=* ]]
+    if [[ "$1" = 'https://www.youtube.com/watch?'*v=* ]] || [[ $1" == 'https://youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtu.be'*/* ]] || [[ "$1" == 'm.youtube.com'** ]] || [[ "$1" == 'https://music.youtube.com/watch?'*v=* ]]
         then
             home="/home/""$USER""/Music"
             if [[ -d "$home" ]]; then
@@ -22,22 +22,22 @@ function url_check {
 
 # Συνάρτηση μετατροπής σε mp3
 function mp3 {
-	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --output "%(title)s.%(ext)s" "$url"
+	youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --output "%(title)s.%(ext)s" "$1"
 }
 
 # Συνάρτηση μετρατοπής μεμονομένου αρχείου λίστας σε mp3
 function mp3_solo_list {
-    youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail -no-playlist- --output "%(title)s.%(ext)s" "$url"
+    youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --no-playlist --output "%(title)s.%(ext)s" "$1"
 }
 
 # Συνάρτηση μετατροπής σε mp4
 function mp4 {
-    youtube-dl --embed-thumbnail -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
+    youtube-dl --embed-thumbnail -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
 }
 
 # Συνάρτηση μετατροπής μεμονομένου αρχείου λίστας σε mp4
 function mp4_solo_list {
-    youtube-dl --embed-thumbnail --no-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$url"
+    youtube-dl --embed-thumbnail --no-playlist --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
 }
 
 # Έλεγχος αν ο χρήστης πρόσθεσε δεύτερο όρισμα
@@ -67,6 +67,21 @@ function YN_Q {
 	done
 }
 
+# Συνάρτηση ελέγχου ύπαρξης λίστας
+function check_list {
+    if [[ "$url" == *"watch?v="* ]] && [[ "$url" == *"list="* ]]
+        then
+        echo "That url contains a list"
+        if YN_Q "Do you want to download the whole list? (y/n)" "Please insert y or n" 
+            then
+                "$2" "$1" 
+            else
+                ""$2"_solo_list" "$1"
+        fi
+    else
+        "$2" "$1"
+    fi           
+}
 # Βασικό scipt με flags
 if [[ "$#" == "0" ]];
 then
@@ -90,8 +105,8 @@ else
                 echo "    ./ytd --mp3 url    "
             else    
                 url="$2"
-                check_flag url
-                mp3 url
+                check_flag "$url"
+                check_list "$url" "mp3"
             fi
     elif [[ $1 == "--mp4" ]]; then
             if [[ "$2" == "" ]]; then
@@ -100,8 +115,8 @@ else
                 echo "    ./ytd --mp4 url    "
             else    
                 url="$2"
-                check_flag url
-                mp4 url
+                check_flag "$url"
+                check_list "$url" "mp4"
             fi 
     else
         echo "--------------- Ytd ----------------"
