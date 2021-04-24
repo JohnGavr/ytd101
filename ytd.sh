@@ -2,7 +2,7 @@
 
 # Συνάρτηση ελέγχου Youtube Url
 function url_check {
-    if [[ "$1" = 'https://www.youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtu.be'*/* ]] || [[ "$1" == 'm.youtube.com'** ]] || [[ "$1" == 'https://music.youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtube.com/playlist?'*list=* ]]
+    if [[ "$1" = 'https://www.youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtu.be'*/* ]] || [[ "$1" == 'm.youtube.com'** ]] || [[ "$1" == 'https://music.youtube.com/watch?'*v=* ]] || [[ "$1" == 'https://youtube.com/playlist?'*list=* ]] || [[ "$1" == 'https://www.youtube.com/playlist?'*list=* ]]
         then
             home="/home/""$USER""/Music"
             if [[ -d "$home" ]]; then
